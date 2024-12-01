@@ -31,59 +31,6 @@
             margin-top: 60px;
         }
 
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-            }
-
-            .lightning-separator {
-                width: 40px !important;
-                height: 100% !important;
-                left: 50% !important;
-                top: 0 !important;
-                transform: translateX(-50%) !important;
-                clip-path: polygon(
-                    25% 0, 75% 0,
-                    75% 15%, 35% 25%,
-                    75% 35%, 35% 45%,
-                    75% 55%, 35% 65%,
-                    75% 75%, 35% 85%,
-                    75% 95%, 35% 100%
-                ) !important;
-            }
-
-            .container::before {
-                width: 10px !important;
-                height: 100% !important;
-                left: 50% !important;
-                top: 0 !important;
-                transform: translateX(-50%) !important;
-            }
-            
-            .left button {
-                margin-bottom: 0;
-            }
-
-            .right img {
-                margin-top: 0;
-            }
-
-            .left img {
-                margin-top: 0;
-            }
-            .countdown .date {
-                font-size: 1.4rem;
-            }
-
-            .countdown .time {
-                font-size: 1rem;
-                margin-top: -2px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
 
         .side {
             flex: 1;
@@ -279,19 +226,74 @@
             box-shadow: 0 2px 4px rgba(255, 165, 0, 0.4);
         }
 
-        @media (min-width: 768px) {
-            .countdown {
-                top: 100px;
-            }
-        }
-
         .countdown .date {
             font-weight: bold;
         }
 
         .countdown .time {
             font-size: 0.9rem;
-            margin-top: -2px;
+            margin-top: -4px;
+        }
+
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .lightning-separator {
+                width: 40px !important;
+                height: 100% !important;
+                left: 50% !important;
+                top: 0 !important;
+                transform: translateX(-50%) !important;
+                clip-path: polygon(
+                    25% 0, 75% 0,
+                    75% 15%, 35% 25%,
+                    75% 35%, 35% 45%,
+                    75% 55%, 35% 65%,
+                    75% 75%, 35% 85%,
+                    75% 95%, 35% 100%
+                ) !important;
+            }
+
+            .container::before {
+                width: 10px !important;
+                height: 100% !important;
+                left: 50% !important;
+                top: 0 !important;
+                transform: translateX(-50%) !important;
+            }
+            
+            .left button {
+                margin-bottom: 0;
+            }
+
+            .right img {
+                margin-top: 0;
+            }
+
+            .left img {
+                margin-top: 0;
+            }
+
+            .countdown {
+                min-width: 300px;
+                top: 100px;
+            }
+
+            .countdown .date {
+                font-size: 1.4rem;
+            }
+
+            .countdown .time {
+                font-size: 1rem;
+                margin-top: -2px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
         }
 
     </style>
@@ -355,10 +357,10 @@
             const girlMultiplier = total / girl_amount;
             const boyMultiplier = total / boy_amount;
             
-            document.getElementById('girl-bet-info').textContent = 
-                `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl,<br/> $0 if it's a boy`;
-            document.getElementById('boy-bet-info').textContent = 
-                `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy,<br/> $0 if it's a girl`;
+            document.getElementById('girl-bet-info').innerHTML = 
+                `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl,<br> $0 if it's a boy`;
+            document.getElementById('boy-bet-info').innerHTML = 
+                `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy,<br> $0 if it's a girl`;
         }
 
         // Initialize ratings on page load
