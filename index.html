@@ -71,7 +71,18 @@
             .left img {
                 margin-top: 0;
             }
+            .countdown .date {
+                font-size: 1.4rem;
+            }
 
+            .countdown .time {
+                font-size: 1rem;
+                margin-top: -2px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
         }
 
         .side {
@@ -251,6 +262,7 @@
             background-color: #ffd700;
         }
         .countdown {
+            min-width: 350px;
             font-size: 1.2rem;
             font-family: inherit;
             color: #666;
@@ -343,9 +355,9 @@
             const girlMultiplier = total / girl_amount;
             const boyMultiplier = total / boy_amount;
             
-            document.getElementById('girl-bet-info').innerHTML = 
+            document.getElementById('girl-bet-info').textContent = 
                 `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl,<br/> $0 if it's a boy`;
-            document.getElementById('boy-bet-info').innerHTML = 
+            document.getElementById('boy-bet-info').textContent = 
                 `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy,<br/> $0 if it's a girl`;
         }
 
