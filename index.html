@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Bet</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .left button {
+            margin-bottom: 70px;
+        }
+
+        .right img {
+            margin-top: 50px;
+        }
+
+        .left img {
+            margin-top: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .lightning-separator {
+                width: 40px !important;
+                height: 100% !important;
+                left: 50% !important;
+                top: 0 !important;
+                transform: translateX(-50%) !important;
+                clip-path: polygon(
+                    25% 0, 75% 0,
+                    75% 15%, 35% 25%,
+                    75% 35%, 35% 45%,
+                    75% 55%, 35% 65%,
+                    75% 75%, 35% 85%,
+                    75% 95%, 35% 100%
+                ) !important;
+            }
+
+            .container::before {
+                width: 10px !important;
+                height: 100% !important;
+                left: 50% !important;
+                top: 0 !important;
+                transform: translateX(-50%) !important;
+            }
+            
+            .left button {
+                margin-bottom: 0;
+            }
+
+            .right img {
+                margin-top: 0;
+            }
+
+            .left img {
+                margin-top: 0;
+            }
+
+        }
+
+        .side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .left::before {
+            background-color: #fff;
+            background-image: url('back-girl.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .right::before {
+            background-color: #fff;
+            background-image: url('back-boy.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        img {
+            max-width: 60%;
+            height: auto;
+            border-radius: 55px;
+            z-index: 1;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+            margin: 15px;
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .left button {
+            background-color: #f7679f;
+        }
+
+        .left button:hover {
+            background-color: #ff69b4;
+        }
+
+        .right button {
+            background-color: #4682b4;
+        }
+
+        .right button:hover {
+            background-color: #3b6e96;
+        }
+
+        .vs-bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff6b79, #4a9dff);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border: 5px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Lightning separator styles */
+        .lightning-separator {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(
+                45deg,
+                #ffa500,
+                #ffd700
+            );
+            clip-path: polygon(
+                0 25%, 0 75%,
+                15% 75%, 25% 35%,
+                35% 75%, 45% 35%,
+                55% 75%, 65% 35%,
+                75% 75%, 85% 35%,
+                95% 75%, 100% 35%
+            );
+            z-index: 999;
+            box-shadow: 0 0 25px rgba(255, 165, 0, 0.8);
+        }
+
+        /* Horizontal line separator by default */
+        .container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(45deg, #ffa500, #ffd700);
+            z-index: 998;
+        }
+        
+        .rating, .bet-info {
+            font-family: 'Comic Sans MS', cursive;
+            color: #444;
+            letter-spacing: 1px;
+            margin: 10px 0;
+        }
+
+        .rating {
+            padding: 8px;
+            background-color: rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(255, 165, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .bet-info {
+            font-size: 1.2rem;
+        }
+
+        .bet-info:last-of-type {
+            font-size: 0.9rem;
+            margin-top: 0px;
+        }
+        h1 {
+            margin: 0;
+            padding: 5px;
+            font-size: 2.5rem;
+            font-family: 'Comic Sans MS', cursive;
+            position: relative;
+            color: #444;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            border-bottom: 4px solid #ffd700;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(255, 165, 0, 0.4);
+            background-color: #ffd700;
+        }
+        .countdown {
+            font-size: 1.2rem;
+            font-family: 'Comic Sans MS', cursive;
+            color: #666;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            background-color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 50px;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(255, 165, 0, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .countdown {
+                top: 100px;
+            }
+        }
+
+        .countdown .date {
+            font-weight: bold;
+        }
+
+        .countdown .time {
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Place Your Bet!</h1>
+    <div class="countdown" id="countdown"></div>
+    <div class="container">
+        <div class="side left">
+            <img src="girl.png" alt="Girl Horse">
+            <p class="rating" id="girl-rating">Current rating: 50%</p>
+            <p class="bet-info" id="girl-bet-info">If you bet 10, you'll get 20 if it's a girl, zero if it's a boy</p>
+            <p class="bet-info">You can also bet for free!</p>
+            <button>Bet on Girl</button>
+        </div>
+        <div class="lightning-separator"></div>
+        <div class="vs-bubble">VS</div>
+        <div class="side right">
+            <img src="boy.png" alt="Boy Horse">
+            <p class="rating" id="boy-rating">Current rating: 50%</p>
+            <p class="bet-info" id="boy-bet-info">If you bet 10, you'll get 20 if it's a boy, zero if it's a girl</p>
+            <p class="bet-info">You can also bet for free!</p>
+            <button>Bet on Boy</button>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const endDate = new Date('December 15, 2024 00:00:00 GMT+0100');
+            const now = new Date().getTime();
+            const timeDiff = endDate.getTime() - now;
+
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            const dateStr = endDate.toLocaleDateString();
+            document.getElementById('countdown').innerHTML = 
+                `<span class="date">Bet closes the ${dateStr}</span><br>
+                 <span class="time">${days} days, ${hours}h, ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
+        }
+
+        // Update countdown immediately and every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        let girl_amount = 210;
+        let boy_amount = 100;
+
+        function updateRatings() {
+            const total = girl_amount + boy_amount;
+            const girlPercentage = Math.round((girl_amount / total) * 100);
+            const boyPercentage = Math.round((boy_amount / total) * 100);
+            
+            // Update ratings display
+            document.getElementById('girl-rating').textContent = `Current rating: ${girlPercentage}%`;
+            document.getElementById('boy-rating').textContent = `Current rating: ${boyPercentage}%`;
+            
+            // Calculate potential returns for 10 unit bet
+            const girlMultiplier = total / girl_amount;
+            const boyMultiplier = total / boy_amount;
+            
+            document.getElementById('girl-bet-info').textContent = 
+                `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl, $0 if it's a boy`;
+            document.getElementById('boy-bet-info').textContent = 
+                `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy, $0 if it's a girl`;
+        }
+
+        // Initialize ratings on page load
+        updateRatings();
+    </script>
+</body>
+</html>
