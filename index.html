@@ -239,7 +239,7 @@
         h1 {
             margin: 0;
             padding: 5px;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-family: inherit;
             position: relative;
             color: #444;
@@ -262,7 +262,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 68px;
+            top: 55px;
             z-index: 1000;
             box-shadow: 0 2px 4px rgba(255, 165, 0, 0.4);
         }
@@ -343,10 +343,10 @@
             const girlMultiplier = total / girl_amount;
             const boyMultiplier = total / boy_amount;
             
-            document.getElementById('girl-bet-info').textContent = 
-                `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl, $0 if it's a boy`;
-            document.getElementById('boy-bet-info').textContent = 
-                `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy, $0 if it's a girl`;
+            document.getElementById('girl-bet-info').innerHTML = 
+                `If you bet $10, you'll get $${Math.round(10 * girlMultiplier)} if it's a girl,<br/> $0 if it's a boy`;
+            document.getElementById('boy-bet-info').innerHTML = 
+                `If you bet $10, you'll get $${Math.round(10 * boyMultiplier)} if it's a boy,<br/> $0 if it's a girl`;
         }
 
         // Initialize ratings on page load
