@@ -344,14 +344,17 @@
         let girl_amount = 40;
         let boy_amount = 30.01;
 
+        let girl_count = 4;
+        let boy_count = 5;
+
         function updateRatings() {
             const total = girl_amount + boy_amount;
             const girlPercentage = Math.round((girl_amount / total) * 100);
             const boyPercentage = Math.round((boy_amount / total) * 100);
             
             // Update ratings display
-            document.getElementById('girl-rating').textContent = `Current rating: ${girlPercentage}%`;
-            document.getElementById('boy-rating').textContent = `Current rating: ${boyPercentage}%`;
+            document.getElementById('girl-rating').textContent = `Current rating: ${girlPercentage}% (with ${girl_count} votes)`;
+            document.getElementById('boy-rating').textContent = `Current rating: ${boyPercentage}% (with ${boy_count} votes)`;
             
             // Calculate potential returns for 10 unit bet
             const girlMultiplier = total / girl_amount;
