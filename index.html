@@ -353,8 +353,8 @@
             const boyPercentage = Math.round((boy_amount / total) * 100);
             
             // Update ratings display
-            document.getElementById('girl-rating').textContent = `Current rating: ${girlPercentage}% (with ${girl_count} votes)`;
-            document.getElementById('boy-rating').textContent = `Current rating: ${boyPercentage}% (with ${boy_count} votes)`;
+            document.getElementById('girl-rating').innerHTML = `Current rating: ${girlPercentage}% <br/> ${girl_count} people voted it's a Girl!`;
+            document.getElementById('boy-rating').innerHTML = `Current rating: ${boyPercentage}% <br/> ${boy_count} people voted it's a Boy!`;
             
             // Calculate potential returns for 10 unit bet
             const girlMultiplier = total / girl_amount;
